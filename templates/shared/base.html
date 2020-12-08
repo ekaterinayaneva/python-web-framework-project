@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recipes</title>
-
+    <title>Good Food</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Welcome</h1>
-<nav>
-        <li class="title"><a href="/">Recipes</a></li>
-        <li><a href="{% url 'create recipe' %}">Add Recipe</a></li>
-    </ul>
-</nav>
-{% block site_content %} {% endblock %}
+    {% include 'shared/header.html' %}
 
+    <h1 class="text-center">
+        {% block site_heading %} {% endblock %}
+    </h1>
 
+    {% block site_content %} {% endblock %}
+
+    {% include 'shared/footer.html' %}
 </body>
 </html>

@@ -1,12 +1,16 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
-    {% for recipe in recipes %}
-        <div class="item">
-            <h2>{{ recipe.title }}</h2>
-            <img class="detail-img" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
-            <div class="recipe-info">
-                {{ recipe.description }}
+{% for recipe in recipes %}
+    <div class="col-lg-4">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ recipe.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2>{{ recipe.title }}</h2>
+                <div class="recipe-info">
+                    {{ recipe.description }}
+                </div>
             </div>
         </div>
-    {% endfor %}
+    </div>
+{% endfor %}
 {% endblock %}

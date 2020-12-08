@@ -5,12 +5,12 @@ from app.models import Recipe, Rating
 
 
 def home_page(request):
-    return render(request, 'recipes/home_page.html')
+    return render(request, 'home_page.html')
 
 
 def recipes(request):
     context = {
-        'recipe': Recipe.objects.all()
+        'recipes': Recipe.objects.all()
     }
     return render(request, 'recipes/recipes.html', context)
 
