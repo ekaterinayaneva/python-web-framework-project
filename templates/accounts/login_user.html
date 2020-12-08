@@ -1,13 +1,16 @@
 {% extends 'shared/base.html' %}
+{% load bootstrap4 %}
 {% block site_content %}
-
-    <div class="container">
-        <form class="w-50 m-auto" method="post" style="border: 1px solid grey; margin: 10% 0%;
-        padding: 5% 5%" action="{% url 'login user' %}">
-            <h2>Login</h2>
-            {{ form }}
+    <div class="row d-flex justify-content-center">
+        <form method="post" class="form" action="{% url 'login user' %}" enctype="multipart/form-data">
+            <h2 class="text-center">Login</h2>
             {% csrf_token %}
-          <button type="submit" class="btn btn-primary">Login</button>
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="background: black">Login</button>
+            <p style="-moz-border-top-colors: coral">----or----</p>
+            <a href="{% url 'register user' %}" style="color: palevioletred">Register</a>
         </form>
     </div>
 

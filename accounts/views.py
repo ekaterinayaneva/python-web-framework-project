@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from accounts.forms import RegisterForm
+from accounts.forms import RegisterForm, ProfileForm
 from accounts.models import UserProfile
 
 
@@ -12,7 +13,6 @@ def register_user(request):
         context = {
             'form': RegisterForm()
         }
-
         return render(request, 'accounts/register_user.html', context)
 
     else:
@@ -33,34 +33,28 @@ def register_user(request):
         return render(request, 'accounts/register_user.html', context)
 
 
-
-# def login_user(req):
-#     if req.method == 'GET':
-#         context = {
-#             'login_form': LoginForm(),
-#             }
-#
-#         return render(req, 'accounts/login_user.html', context)
-#
-#     else:
-#         login_form = LoginForm(req.POST)
-#         if login_form.is_valid():
-#             username = login_form.cleaned_data['username']
-#             password = login_form.cleaned_data['password']
-#             user = authenticate(username=username, password=password)
-#             if user:
-#                 login(req, user)
-#                 return redirect('home page')
-#
-#
-#             context = {
-#                 'login_form': login_form,
-#             }
-#             return render(req, 'accounts/login_user.html', context)
-
-
 @login_required
 def logout_user(req):
     logout(req)
     return redirect('home page')
 
+
+def user_profile(request, pk=None):
+    user = request.user if pk is None else User.objects.get(pk=pk)
+    if request.method == 'GET':
+        context = {
+            'profile_user': user,
+            'profile': user.userprofile,
+            'recipes': user.userprofile.recipe_set.all(),
+            'form': ProfileForm()
+        }
+
+        return render(request, 'accounts/user_profile.html', context)
+
+    else:
+        form = ProfileForm(request.POST, request.FILES, instance=user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('current user profile')
+
+        return redirect('current user profile')

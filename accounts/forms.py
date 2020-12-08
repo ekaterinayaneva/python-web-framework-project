@@ -13,18 +13,11 @@ class RegisterForm(UserCreationForm):
             'password': forms.PasswordInput(),
         }
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email', False)
-        if not email:
-            raise forms.ValidationError('Email is required')
-        return email
-
-
-# class LoginForm(forms.Form):
-#     username = forms.CharField(max_length=30)
-#     password = forms.CharField(
-#         widget=forms.PasswordInput(),
-#     )
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email', False)
+    #     if not email:
+    #         raise forms.ValidationError('Email is required')
+    #     return email
 
 
 class ProfileForm(forms.ModelForm):

@@ -8,10 +8,6 @@
 <body>
     {% include 'shared/header.html' %}
 
-    <h1 class="text-center">
-        {% block site_heading %} {% endblock %}
-    </h1>
-
     {% block site_content %} {% endblock %}
 
     {% include 'shared/footer.html' %}

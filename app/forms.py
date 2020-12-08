@@ -12,7 +12,7 @@ class RecipeForm(forms.ModelForm):       #create and edit view
 
     class Meta:
         model = Recipe
-        fields = '__all__'
+        exclude = ('user', )
         widgets = {
             'image': forms.FileInput(
                 attrs={
@@ -41,12 +41,10 @@ class RecipeFormReadOnly(forms.ModelForm):     #delete view
     method = forms.CharField(disabled=True)
     ingredients = forms.CharField(disabled=True)
     time = forms.IntegerField(disabled=True)
-                                  # widget=forms.Textarea(
-                                  #     attrs={'class': 'form-control rounded-2'}
-                                  # ))
 
     class Meta:
         model = Recipe
-        fields = '__all__'
+        exclude = ('user', )
+ #       fields = '__all__'
 
 

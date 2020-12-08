@@ -1,3 +1,56 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
+
+    <div>
+        <div class="text-center">
+            <h1>{{ recipe.title }}</h1>
+        </div>
+        <div class="text-center" style="width: 20;">
+            <img src="{{ recipe.image.url }}" alt="image of {{ recipe.name }}">
+        </div>
+
+        <div>
+            <div class="d-inline p-3 w-50">
+            <div class="d-flex justify-content-between">
+                <h6><u>Created by:</u> {{ recipe.user.user.username }}</h6>
+                <h6><u>Rating:</u> {{ recipe.rating_set.count }}</h6>
+            </div>
+
+
+            <div class="d-flex justify-content-between">
+                <h5>Description: {{ recipe.description }}</h5>
+            </div>
+
+            <div>
+                <h5>Method: {{ recipe.method }}</h5>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="d-block" style="background-color: lavender; padding:1%">
+        {% if recipe.comment_set.count > 0 %}
+            {% for comment in recipe.comment_set.all %}
+                <div class="box">
+                    <a href="{% url 'user profile' comment.user_id %}">{{ recipe.user.user.username }}</a>
+                    <h5><em>{{ comment.text }}</em></h5>
+                </div>
+            {% endfor %}
+        {% else %}
+        <div class="box">
+            <h3>There are no comments for this recipe. </h3>
+        </div>
+        {% endif %}
+
+        <div class="box">
+            <form method="post" action="{% url 'recipe details' recipe.id %}">
+                {{ form }}
+                {% csrf_token %}
+                <button class="btn btn-primary mt-2" type="submit" style="background: black">Add comment</button>
+            </form>
+        </div>
+
+    </div>
+
 {% endblock %}
+

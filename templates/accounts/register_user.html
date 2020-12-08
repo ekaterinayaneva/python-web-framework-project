@@ -1,15 +1,20 @@
 {% extends 'shared/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
 {% block site_content %}
     <div class="container-fluid" style="background-image: none">
         <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <form style="border: 1px solid grey; margin: 10% 0%; padding: 10% 5%" method="post">
-                    <h2>Register</h2>
-                      {{ form }}
+                    <h2 class="text-center">Register</h2>
                       {% csrf_token %}
-                    <button class="btn btn-primary" type="submit">Register</button>
-                    <span>Have an account?<a href="{% url 'login user' %}" style="color:orange">Sign in here</a></span>
+                    {% for field in form %}
+                        {% bootstrap_field field %}
+                    {% endfor %}
+                    <button class="btn btn-primary" style="background-color: black" type="submit">Register</button>
+                    <p>-----or-----</p>
+                    <span>Have an account?<a href="{% url 'login user' %}" style="color:palevioletred"> Sign in here</a></span>
                 </form>
             <div class="col-lg-3"></div>
             </div>

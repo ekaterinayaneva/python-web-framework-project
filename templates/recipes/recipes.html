@@ -10,6 +10,9 @@
                     {{ recipe.description }}
                 </div>
             </div>
+            <div class="buttons-container">
+            <a class="button detail" href="{% url 'recipe details' recipe.pk %}">See more</a>
+            </div>
         </div>
     </div>
 {% endfor %}

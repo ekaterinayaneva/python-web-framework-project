@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'accounts',
     'app',
     'django.contrib.admin',
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'python_web_framework_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'python_web_project_db',
+        'NAME': 'python_web_framework_project',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
     }
