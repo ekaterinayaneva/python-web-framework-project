@@ -17,11 +17,15 @@ def recipes(request):
 
 def recipe_details(request, pk):
     recipe = Recipe.objects.get(pk=pk)
+    ingredients_list = recipe.ingredients.split(', ')
+    methods = recipe.method.split('.')
 
     if request.method == 'GET':
         context = {
             'recipe': recipe,
             'form': CommentForm(),
+            'ingredients_list': ingredients_list,
+            'methods': methods,
         }
         return render(request, 'recipes/recipe_details.html', context)
 
