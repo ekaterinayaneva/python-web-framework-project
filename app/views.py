@@ -8,6 +8,8 @@ def home_page(request):
     return render(request, 'home_page.html')
 
 
+
+
 def recipes(request):
     context = {
         'recipes': Recipe.objects.all()
@@ -97,7 +99,7 @@ def delete_recipe(request, pk):
 
     else:
         recipe.delete()
-        return redirect('current user profile')
+        return redirect('home page')
 
 
 def create_recipe(request):
@@ -110,8 +112,9 @@ def create_recipe(request):
     else:
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.user = request.user.userprofile
             form.save()
-
             return redirect('recipes')
 
         context = {'form': form}

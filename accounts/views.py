@@ -40,22 +40,22 @@ def logout_user(req):
     return redirect('home page')
 
 
-# def user_profile(request, pk=None):
-#     user = request.user if pk is None else User.objects.get(pk=pk)
-#     if request.method == 'GET':
-#         context = {
-#             'profile_user': user,
-#             'profile': user.userprofile,
-#             'recipes': user.userprofile.recipe_set.all(),
-#             'form': ProfileForm()
-#         }
-#
-#         return render(request, 'accounts/user_profile.html', context)
-#
-#     else:
-#         form = ProfileForm(request.POST, request.FILES, instance=user.userprofile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('current user profile')
-#
-#         return redirect('current user profile')
+def user_profile(request, pk=None):
+    user = request.user if pk is None else User.objects.get(pk=pk)
+    if request.method == 'GET':
+        context = {
+            'profile_user': user,
+            'profile': user.userprofile,
+            'recipes': user.userprofile.recipe_set.all(),
+            'form': ProfileForm()
+        }
+
+        return render(request, 'accounts/user_profile.html', context)
+
+    else:
+        form = ProfileForm(request.POST, request.FILES, instance=user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('current user profile')
+
+        return redirect('current user profile')
