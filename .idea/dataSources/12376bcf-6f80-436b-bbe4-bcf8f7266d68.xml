@@ -800,7 +800,7 @@ false posixrules
     <database id="4" parent="1" name="python_web_framework_project">
       <ObjectId>33446</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>964</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1048</IntrospectionStateNumber>
       <Relations>sequence|table|33447|33449|1
 sequence|table|33458|33460|1
 sequence|table|33468|33470|1
@@ -921,7 +921,7 @@ sequence|table|33413|33415|1
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>965</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1049</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="23" parent="4" name="heap">
@@ -1072,7 +1072,7 @@ sequence|table|33413|33415|1
     <table id="48" parent="22" name="accounts_userprofile">
       <ObjectId>33574</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>934</StateNumber>
+      <StateNumber>1027</StateNumber>
     </table>
     <table id="49" parent="22" name="app_comment">
       <ObjectId>33632</ObjectId>

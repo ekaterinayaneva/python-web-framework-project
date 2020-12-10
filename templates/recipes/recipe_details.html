@@ -23,6 +23,8 @@
                 <h5>{{ recipe.description }}</h5>
             </div>
         </div>
+        <a href="{% url 'edit recipe' recipe.pk %}" class="btn btn-success">Edit</a>
+        <a href="{% url 'delete recipe' recipe.pk %}" class="btn btn-danger">Delete</a>
 
     </div>
 

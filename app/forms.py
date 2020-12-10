@@ -12,6 +12,7 @@ class RecipeForm(forms.ModelForm):       #create and edit view
 
     class Meta:
         model = Recipe
+        fields = '__all__'
         exclude = ('user', )
         widgets = {
             'image': forms.FileInput(

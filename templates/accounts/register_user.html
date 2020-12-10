@@ -9,7 +9,10 @@
                 <form style="border: 1px solid grey; margin: 10% 0%; padding: 10% 5%" method="post">
                     <h2 class="text-center">Register</h2>
                       {% csrf_token %}
-                    {% for field in form %}
+                    {% for field in user_form %}
+                        {% bootstrap_field field %}
+                    {% endfor %}
+                    {% for field in profile_form %}
                         {% bootstrap_field field %}
                     {% endfor %}
                     <button class="btn btn-primary" style="background-color: black" type="submit">Register</button>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from app.forms import CommentForm, RecipeForm
+from app.forms import CommentForm, RecipeForm, RecipeFormReadOnly
 from app.models import Recipe, Comment, Rating
 
 
@@ -85,10 +85,15 @@ def edit_recipe(request, pk):
 
 def delete_recipe(request, pk):
     recipe = Recipe.objects.get(pk=pk)
+    ingredients_list = recipe.ingredients.split(', ')
+    methods = recipe.method.split('.')
 
     if request.method == 'GET':
-        context = {'recipe': recipe}
-        return render(request, 'recipes/delete_recipe.html', context)
+        context = {'recipe': recipe,
+                   'ingredients_list': ingredients_list,
+                   'methods': methods,
+        }
+        return render(request, 'recipes/delete_recipe_sure.html', context)
 
     else:
         recipe.delete()
