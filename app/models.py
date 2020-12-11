@@ -18,12 +18,11 @@ class Recipe(models.Model):
 
 
 
-class Rating(models.Model):
+class SaveRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     test = models.CharField(max_length=2)
 
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-
 
 
 class Comment(models.Model):

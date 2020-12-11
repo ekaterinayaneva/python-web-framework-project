@@ -47,7 +47,8 @@ def user_profile(request, pk=None):
             'profile_user': user,
             'profile': user.userprofile,
             'recipes': user.userprofile.recipe_set.all(),
-            'form': ProfileForm()
+            'saved_recipes': user.userprofile.saverecipe_set.all(),
+            'form': ProfileForm(),
         }
 
         return render(request, 'accounts/user_profile.html', context)

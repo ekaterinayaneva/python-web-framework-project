@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from app.forms import CommentForm, RecipeForm, RecipeFormReadOnly
-from app.models import Recipe, Comment, Rating
+from app.forms import CommentForm, RecipeForm
+from app.models import Recipe, Comment, SaveRecipe
 
 
 def home_page(request):
@@ -28,6 +28,7 @@ def recipe_details(request, pk):
             'form': CommentForm(),
             'ingredients_list': ingredients_list,
             'methods': methods,
+            'has_saved': recipe.saverecipe_set.filter(user_id=request.user.userprofile.id).exists(),
         }
         return render(request, 'recipes/recipe_details.html', context)
 
@@ -47,15 +48,15 @@ def recipe_details(request, pk):
         return render(request, 'recipes/recipe_details.html', context)
 
 
-def recipe_rate(request, pk):
-    rate = Rating.objects.filter(user_id=request.user.userprofile.id, recipe_id=pk).first()
-    if rate:
-        rate.delete()
+def user_save_recipe(request, pk):
+    save_recipe = SaveRecipe.objects.filter(user_id=request.user.userprofile.id, recipe_id=pk).first()
+    if save_recipe:
+        save_recipe.delete()
     else:
         recipe = Recipe.objects.get(pk=pk)
-        rate = Rating(test=str(pk), user=request.user.userprofile)
-        rate.recipe = recipe
-        rate.save()
+        save_recipe = SaveRecipe(test=str(pk), user=request.user.userprofile)
+        save_recipe.recipe = recipe
+        save_recipe.save()
 
     return redirect('recipe details', pk)
 

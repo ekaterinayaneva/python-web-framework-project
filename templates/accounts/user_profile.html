@@ -1,0 +1,80 @@
+{% extends 'shared/base.html' %}
+{% block site_content %}
+
+    <div class="text-center">
+        <h1>Hello, {{ profile_user.username }}!</h1>
+        <h5>This is your profile</h5>
+        {% if profile.profile_picture %}
+            <img class="rounded-circle mb-3" src="{{ profile.profile_image.url }}" alt="Generic placeholder image"
+                 width="140"
+                 height="140">
+        {% else %}
+            <img class="rounded-circle mb-3" src="https://afribary.com/authors/anonymous-user/photo"
+                 alt="Generic placeholder image" width="140" height="140">
+        {% endif %}
+        <div class="w-50 m-auto">
+            <form action="{% url 'current user profile' %}" method="post" enctype="multipart/form-data">
+                {{ form }}
+                {% csrf_token %}
+                <button class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+    {% if recipes %}
+        <h2 class='text-center'>Own Recipes</h2>
+        <div class="row">
+            <div class="row" style=" margin: 30px; margin-right: 25px">
+                {% for recipe in recipes %}
+                    <div class="row-4-col" style="margin: 25px">
+                        <div class="card" style="width: 18rem; padding: 15px">
+                            <img src="{{ recipe.image.url }}" class="card-img-top" alt="Image of {{ recipe.title }}"
+                            sizes="width="100px height="175px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.title }}</h5>
+                                <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark">See it</a>
+                                <a href="{% url 'edit recipe' recipe.pk %}" class="btn btn-outline-dark">Edit</a>
+                                <a href="{% url 'delete recipe' recipe.pk %}" class="btn btn-outline-dark">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h2>You have no created recipes</h2>
+            <a href="{% url 'create recipe' %}" class="btn btn-success">Add a Recipe</a>
+        </div>
+    {% endif %}
+
+
+
+
+        <hr>
+    {% if saved_recipes %}
+        <h2 class='text-center'>Your saved recipes</h2>
+        <div class="row">
+            <div class="row" style=" margin: 30px; margin-right: 25px">
+                {% for recipe in saved_recipes %}
+                    <div class="row-4-col" style="margin: 25px" >
+                        <div class="card" style="width: 18rem; padding: 15px">
+                            <img src="{{ recipe.recipe.image.url }}" class="card-img-top" alt="Image of {{ recipe.recipe.title }}"
+                                 sizes="width="100px height="175px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.recipe.title }}</h5>
+                                <a href="{% url 'recipe details' recipe.recipe.id %}" class="btn btn-outline-dark">See it</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h2>You don't have any saved recipes yet</h2>
+        </div>
+    {% endif %}
+
+{% endblock %}
