@@ -1,66 +1,21 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
-    {% load bootstrap4 %}
-    <link rel="stylesheet" href="/static/css/style.css">
-
-
-    <div class="text-center" style="background-color: #f8f8f8; padding:5%" >
-        <div class="text-center" >
-            <h1 style="font-family: 'Berlin Sans FB', cursive; font-size: 500%">{{ recipe.title }}</h1>
-        </div>
-
-        <div class="text-center" style="padding: 20px">
-            <img src="{{ recipe.image.url }}" alt="image of {{ recipe.name }}">
-
-            <div class="text-center inline-deletelink w-auto" style="font-family: Algerian,serif">
-                <h6><u>Created by:</u> {{ recipe.user.user.username }}</h6>
-                <h6><u>Rating:</u> {{ recipe.rating_set.count }}</h6>
-            </div>
-        </div>
-
-        <div class="d-inline p-3 w-50" style="font-family: 'Berlin Sans FB', cursive; margin-left: 50px">
-            <div class="text-center">
-                <h5>{{ recipe.description }}</h5>
-            </div>
-        </div>
-    </div>
-
-    <div style="font-family: 'Berlin Sans FB', cursive; padding: 5%; background-color: #f8f8f8">
-        <h5>Ingredients:</h5>
-        {% for ingredient in ingredients_list %}
-            <li>{{ ingredient }}</li>
-        {% endfor %}
-    </div>
-
-    <div  style="font-family: 'Berlin Sans FB', cursive; ; padding: 5%; background-color: #f8f8f8">
-        <h5>Method:</h5>
-        {% for method in methods %}
-            <ul>{{ method }}</ul>
-        {% endfor %}
-    </div>
-
-    <div class="d-block" style="background-color: -moz-nativehyperlinktext; padding:5%">
-        {% if recipe.comment_set.count > 0 %}
-            {% for comment in recipe.comment_set.all %}
-                <div class="box" style="font-family: Constantia ; color: black">
-                    <a style="color: black" href="{% url 'user profile' comment.user_id %}">{{ recipe.user.user.username }} says:</a>
-                    <h5><em>{{ comment.text }}</em></h5>
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-12 text-center" style="color: #fff">
+            <h1>Are you sure you want to delete your recipe {{ recipe.title }}?</h1>
+            <div class="m-auto d-flex justify-content-center">
+                 <div class="m-2">
+                     <form method="post" action={% url 'delete recipe' recipe.pk %}>
+                        {% csrf_token %}
+                            <input type="submit" value="Confirm" class="btn btn-outline-dark" style="color: #fff">
+                     </form>
                 </div>
-            {% endfor %}
-        {% else %}
-        <div class="box">
-            <h3>There are no comments for this recipe. </h3>
+                <div class="m-2">
+                    <a class="btn btn-outline-dark" style="color: #fff" href="javascript:history.back()">No, go back</a>
+                </div>
+            </div>
         </div>
-        {% endif %}
-
-        <div class="box">
-            <form>
-                <a href="{% url 'delete recipe' recipe.pk %}" class="btn btn-primary mt-2" type="submit"
-                   style="background: black">Delete Recipe</a>
-                {% csrf_token %}
-            </form>
         </div>
     </div>
-
 {% endblock %}
-

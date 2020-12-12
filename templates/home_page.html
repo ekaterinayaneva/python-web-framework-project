@@ -1,17 +1,36 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
 
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
+<title>Text image</title>
+   <style type="text/css">
+       body{
+           margin: 0;
+           padding: 0;
+       }
 
-    <div class="content-wrapper">
-    <img src="/static/images/home-page-img.jpg" alt="Festive baking" style="width: 100%">
-    <div class="image">
-        <h1>Good Food</h1>
-        <h1>Festive Baking</h1>
-        <h3>Inspere yourself and share your Recipes with the world</h3>
+       .text{
+           width: 100%;
+           height: 100vh;
+           background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://thebananadiaries.com/wp-content/uploads/2020/11/vegan-white-chocolate-cake_4821-1355x2000.jpg");
+           background-size: cover;
+           background-position: center;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: #fff;
+           font-size: 2vw;
+       }
+       
+   </style>
 
-    </div>
-    </div>
+   <div class="text">
+       <a class="" style="font-size: 50px; color: #fff" href="{% url 'recipes' %}"><h1>Good Food. </h1></a>
+       <br>
+       <a class="" style="font-size: 30px; color: #fff" href="{% url 'recipes' %}"><h2>Festive Baking. </h2></a>
+       <br>
+       <a class="" style="font-size: 25px; color: #fff" href="{% url 'create recipe' %}">
+           <h4>Inspire yourself and share your Recipes with the world </h4></a>
+   </div>
+
 
 {% endblock %}

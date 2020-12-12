@@ -35,8 +35,8 @@ def register_user(request):
 
 
 @login_required
-def logout_user(req):
-    logout(req)
+def logout_user(request):
+    logout(request)
     return redirect('home page')
 
 

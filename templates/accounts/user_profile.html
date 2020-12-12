@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
-
-    <div class="text-center">
+<div class="container">
+    <div class="text-center" style="color: #fff">
         <h1>Hello, {{ profile_user.username }}!</h1>
         <h5>This is your profile</h5>
         {% if profile.profile_picture %}
@@ -16,26 +16,31 @@
             <form action="{% url 'current user profile' %}" method="post" enctype="multipart/form-data">
                 {{ form }}
                 {% csrf_token %}
-                <button class="btn btn-primary">Upload</button>
+                <button class="btn btn-outline-dark" type="submit" style="color: #fff; margin-top: 10px; margin-bottom: 20px">
+                        Upload</button>
             </form>
         </div>
     </div>
 
     <hr>
     {% if recipes %}
-        <h2 class='text-center'>Own Recipes</h2>
+        <h1 class= 'text-center' style="font-size: 30px; padding-top: 25px; color: #fff">You Created</h1>
         <div class="row">
             <div class="row" style=" margin: 30px; margin-right: 25px">
                 {% for recipe in recipes %}
                     <div class="row-4-col" style="margin: 25px">
-                        <div class="card" style="width: 18rem; padding: 15px">
+                        <div class="card" style="width: 18rem; padding: 15px; background: transparent;">
                             <img src="{{ recipe.image.url }}" class="card-img-top" alt="Image of {{ recipe.title }}"
                             sizes="width="100px height="175px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ recipe.title }}</h5>
-                                <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark">See it</a>
-                                <a href="{% url 'edit recipe' recipe.pk %}" class="btn btn-outline-dark">Edit</a>
-                                <a href="{% url 'delete recipe' recipe.pk %}" class="btn btn-outline-dark">Delete</a>
+                            <div class="card-body" style="color: #fff">
+                                <h5 class="card-title" style="font-size: 25px; color: #fff">{{ recipe.title }}</h5>
+                                <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                        font-family: cursive; margin-bottom: 10px">see details</a>
+                                <br>
+                                <a href="{% url 'edit recipe' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                        font-family: cursive">edit</a>
+                                <a href="{% url 'delete recipe' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                        font-family: cursive">delete</a>
                             </div>
                         </div>
                     </div>
@@ -43,28 +48,30 @@
             </div>
         </div>
     {% else %}
-        <div class="text-center">
-            <h2>You have no created recipes</h2>
-            <a href="{% url 'create recipe' %}" class="btn btn-success">Add a Recipe</a>
+        <div class="text-center" style="margin-bottom: 200px">
+            <h1 class= 'text-center' style="font-size: 30px; padding-top: 25px; color: #fff">You have no created recipes</h1>
+            <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                        font-family: cursive">Add a Recipe</a>
         </div>
     {% endif %}
 
 
 
 
-        <hr>
+    <hr>
     {% if saved_recipes %}
-        <h2 class='text-center'>Your saved recipes</h2>
-        <div class="row">
+        <h1 class= 'text-center' style="font-size: 30px; padding-top: 25px; color: #fff">Your Saved Recipes</h1>
+        <div class="row" >
             <div class="row" style=" margin: 30px; margin-right: 25px">
                 {% for recipe in saved_recipes %}
                     <div class="row-4-col" style="margin: 25px" >
-                        <div class="card" style="width: 18rem; padding: 15px">
+                        <div class="card" style="width: 18rem; padding: 15px; background: transparent;">
                             <img src="{{ recipe.recipe.image.url }}" class="card-img-top" alt="Image of {{ recipe.recipe.title }}"
                                  sizes="width="100px height="175px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ recipe.recipe.title }}</h5>
-                                <a href="{% url 'recipe details' recipe.recipe.id %}" class="btn btn-outline-dark">See it</a>
+                            <div class="card-body" style="color:#fff;">
+                                <h5 class="card-title" style="font-size: 25px; color: #fff">{{ recipe.recipe.title }}</h5>
+                                <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                                        font-family: cursive; margin-bottom: 10px">see details</a>
                             </div>
                         </div>
                     </div>
@@ -72,9 +79,11 @@
             </div>
         </div>
     {% else %}
-        <div class="text-center">
-            <h2>You don't have any saved recipes yet</h2>
+        <div class="text-center" style="color: #fff; margin-bottom: 200px">
+            <h1 class= 'text-center' style="font-size: 30px; padding-top: 25px; color: #fff">You don't have any saved recipes yet</h1>
         </div>
     {% endif %}
+    </div>
 
 {% endblock %}
+

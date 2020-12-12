@@ -10,6 +10,15 @@
 
     {% block site_content %} {% endblock %}
 
+    {% block additional_styles %}
+        <style>
+            body {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(https://images.prismic.io/allplants-cms-prod/dd17a6b2-b979-4639-942d-8a4c22050453_bruna-branco-569hhaYwXaQ-unsplash.jpg?auto=compress,format);
+            }
+        </style>
+    {% endblock %}
+
+
     {% include 'shared/footer.html' %}
 </body>
 </html>

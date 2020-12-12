@@ -1,16 +1,17 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
 
-    <h1 class= 'text-center', style="font-family: cursive; padding-top: 25px">Festive Recipes</h1>
+    <h1 class= 'text-center' style="font-size: 50px; padding-top: 25px; color: #fff">Festive Recipes</h1>
     <div class="row" style="padding: 100px; padding-block: 50px">
     {% for recipe in recipes %}
         <div class="row-3-col" style="margin: 25px">
-            <div class="card" style="width: 18rem; padding: 15px">
+            <div class="card" style="width: 18rem; padding: 15px; background: transparent; margin-left: 50%; margin-right: 50%;">
                 <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}"
                 sizes="width="100px height="200px">
                 <div class="card-body">
-                    <h5 class="card-title">{{ recipe.title }}</h5>
-                    <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark">See details</a>
+                    <h4 class="card-title" style="font-size: 30px; color: #fff">{{ recipe.title }}</h4>
+                    <a href="{% url 'recipe details' recipe.id %}" class="btn btn-outline-dark" style="color: #fff;
+                        font-family: cursive">See details</a>
                 </div>
             </div>
         </div>

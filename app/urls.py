@@ -9,6 +9,5 @@ urlpatterns = [
     path('recipe/details/<int:pk>', recipe_details, name='recipe details'),
     path('recipe/edit/<int:pk>/', edit_recipe, name='edit recipe'),
     path('recipe/delete/<int:pk>', delete_recipe, name='delete recipe'),
-    path('recipe/delete/<int:pk>', delete_recipe, name='delete recipe sure'),
     path('save/<int:pk>', user_save_recipe, name='save recipe'),
 ]

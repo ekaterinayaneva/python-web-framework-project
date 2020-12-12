@@ -1,16 +1,20 @@
 {% extends 'shared/base.html' %}
 {% load bootstrap4 %}
 {% block site_content %}
-    <div class="row d-flex justify-content-center">
-        <form method="post" class="form" action="{% url 'login user' %}" enctype="multipart/form-data">
-            <h2 class="text-center">Login</h2>
+
+    <div class="row d-flex justify-content-center" style="color: #fff">
+        <form method="post" class="form" action="{% url 'login user' %}" enctype="multipart/form-data"
+              style="border: 1px solid grey; margin: 5% 0%; padding: 2% 2%">
+            <h2 class="text-center" style="padding-bottom: 10px">Login</h2>
             {% csrf_token %}
             {% for field in form %}
                 {% bootstrap_field field %}
             {% endfor %}
-            <button type="submit" class="btn btn-primary" style="background: black">Login</button>
-            <p style="-moz-border-top-colors: coral">----or----</p>
-            <a href="{% url 'register user' %}" style="color: palevioletred">Register</a>
+            <button class="btn btn-outline-dark" type="submit" style="color: #fff; margin-top: 10px; margin-bottom: 10px">
+                Login</button>
+            <hr>
+
+            <span>No account yet?<a href="{% url 'register user' %}" style="color:palevioletred"> Register</a></span>
         </form>
     </div>
 

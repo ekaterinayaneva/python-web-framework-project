@@ -1,13 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from app.forms import CommentForm, RecipeForm
 from app.models import Recipe, Comment, SaveRecipe
 
 
+
 def home_page(request):
     return render(request, 'home_page.html')
-
-
 
 
 def recipes(request):
@@ -17,6 +17,7 @@ def recipes(request):
     return render(request, 'recipes/recipes.html', context)
 
 
+@login_required
 def recipe_details(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     ingredients_list = recipe.ingredients.split(', ')
@@ -43,7 +44,10 @@ def recipe_details(request, pk):
 
         context = {
             'recipe': recipe,
-            'form': form
+            'form': form,
+            'ingredients_list': ingredients_list,
+            'methods': methods,
+            'has_saved': recipe.saverecipe_set.filter(user_id=request.user.userprofile.id).exists(),
         }
         return render(request, 'recipes/recipe_details.html', context)
 
@@ -88,21 +92,17 @@ def edit_recipe(request, pk):
 
 def delete_recipe(request, pk):
     recipe = Recipe.objects.get(pk=pk)
-    ingredients_list = recipe.ingredients.split(', ')
-    methods = recipe.method.split('.')
 
     if request.method == 'GET':
-        context = {'recipe': recipe,
-                   'ingredients_list': ingredients_list,
-                   'methods': methods,
-        }
-        return render(request, 'recipes/delete_recipe_sure.html', context)
+        context = {'recipe': recipe}
+        return render(request, 'recipes/delete_recipe.html', context)
 
     else:
         recipe.delete()
         return redirect('home page')
 
 
+@login_required
 def create_recipe(request):
 
     if request.method == 'GET':

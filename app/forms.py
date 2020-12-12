@@ -34,18 +34,6 @@ class CommentForm(forms.Form):                 # recipe detail
         fields = ('comment',)
 
 
-class RecipeFormReadOnly(forms.ModelForm):     #delete view
 
-    title = forms.CharField(disabled=True)
-    image_url = forms.URLField(disabled=True)
-    description = forms.CharField(disabled=True)
-    method = forms.CharField(disabled=True)
-    ingredients = forms.CharField(disabled=True)
-    time = forms.IntegerField(disabled=True)
-
-    class Meta:
-        model = Recipe
-        exclude = ('user', )
- #       fields = '__all__'
 
 
