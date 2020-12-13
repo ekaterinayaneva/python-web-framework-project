@@ -1,26 +1,12 @@
 {% extends 'shared/base.html' %}
 {% block site_content %}
-<div class="container">
-    <div class="text-center" style="color: #fff">
-        <h1>Hello, {{ profile_user.username }}!</h1>
-        <h5>This is your profile</h5>
-        {% if profile.profile_picture %}
-            <img class="rounded-circle mb-3" src="{{ profile.profile_image.url }}" alt="Generic placeholder image"
-                 width="140"
-                 height="140">
-        {% else %}
-            <img class="rounded-circle mb-3" src="https://afribary.com/authors/anonymous-user/photo"
-                 alt="Generic placeholder image" width="140" height="140">
-        {% endif %}
-        <div class="w-50 m-auto">
-            <form action="{% url 'current user profile' %}" method="post" enctype="multipart/form-data">
-                {{ form }}
-                {% csrf_token %}
-                <button class="btn btn-outline-dark" type="submit" style="color: #fff; margin-top: 10px; margin-bottom: 20px">
-                        Upload</button>
-            </form>
+
+    <div class="container">
+        <div class="text-center" style="color: #fff">
+            <h1>Hello, {{ profile_user.username }}!</h1>
+            <h5>This is your profile</h5>
         </div>
-    </div>
+
 
     <hr>
     {% if recipes %}

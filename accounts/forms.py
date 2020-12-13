@@ -13,15 +13,9 @@ class RegisterForm(UserCreationForm):
             'password': forms.PasswordInput(),
         }
 
-    # def clean_email(self):
-    #     email = self.cleaned_data.get('email', False)
-    #     if not email:
-    #         raise forms.ValidationError('Email is required')
-    #     return email
-
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('profile_image', )
-     #   exclude = ('user', )
+        exclude = ('user', 'profile_image')
+

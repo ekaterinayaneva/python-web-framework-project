@@ -1,9 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from app.forms import CommentForm, RecipeForm
 from app.models import Recipe, Comment, SaveRecipe
-
+from decorators import group_required
 
 
 def home_page(request):
@@ -17,7 +16,7 @@ def recipes(request):
     return render(request, 'recipes/recipes.html', context)
 
 
-@login_required
+@group_required(groups=['User'])
 def recipe_details(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     ingredients_list = recipe.ingredients.split(', ')
@@ -102,7 +101,7 @@ def delete_recipe(request, pk):
         return redirect('home page')
 
 
-@login_required
+@group_required(groups=['User'])
 def create_recipe(request):
 
     if request.method == 'GET':

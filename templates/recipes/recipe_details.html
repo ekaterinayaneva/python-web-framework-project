@@ -70,7 +70,7 @@
         {% if recipe.comment_set.count > 0 %}
             {% for comment in recipe.comment_set.all %}
                 <div class="box" style="font-family: Constantia ; color: #fff; padding-top: 15px">
-                    <a style="color: #fff" href="{% url 'user profile' comment.user_id %}">{{ recipe.user.user.username }} says:</a>
+                    <a style="color: #fff">{{ recipe.user.user.username }} says:</a>
                     <h5><em>{{ comment.text }}</em></h5>
                 </div>
             {% endfor %}

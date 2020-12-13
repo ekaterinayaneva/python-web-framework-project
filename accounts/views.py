@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 
 from accounts.forms import RegisterForm, ProfileForm
 from accounts.models import UserProfile
+
 
 
 def register_user(request):
@@ -26,6 +28,9 @@ def register_user(request):
             profile.save()
 
             login(request, user)
+
+            group = Group.objects.get(name='User')
+            user.groups.add(group)
             return redirect('home page')
 
         context = {
