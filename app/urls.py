@@ -1,13 +1,14 @@
 from django.urls import path
 from . import views
-from .views import home_page, recipes, create_recipe, recipe_details, edit_recipe, delete_recipe, user_save_recipe
+from .views import HomePageView, RecipesView, CreateRecipeView, RecipeDetailsView, UpdateRecipeView, DeleteRecipeView, \
+    UserSaveRecipeView
 
 urlpatterns = [
-    path('', home_page, name='home page'),
-    path('recipes', recipes, name='recipes'),
-    path('recipe/create/', create_recipe, name='create recipe'),
-    path('recipe/details/<int:pk>', recipe_details, name='recipe details'),
-    path('recipe/edit/<int:pk>/', edit_recipe, name='edit recipe'),
-    path('recipe/delete/<int:pk>', delete_recipe, name='delete recipe'),
-    path('save/<int:pk>', user_save_recipe, name='save recipe'),
+    path('', HomePageView.as_view(), name='home page'),
+    path('recipes', RecipesView.as_view(), name='recipes'),
+    path('recipe/create/', CreateRecipeView.as_view(), name='create recipe'),
+    path('recipe/details/<int:pk>', RecipeDetailsView.as_view(), name='recipe details'),
+    path('recipe/edit/<int:pk>/', UpdateRecipeView.as_view(), name='edit recipe'),
+    path('recipe/delete/<int:pk>', DeleteRecipeView.as_view(), name='delete recipe'),
+    path('save/<int:pk>', UserSaveRecipeView.as_view(), name='save recipe'),
 ]

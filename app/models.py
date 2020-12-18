@@ -5,7 +5,7 @@ from accounts.models import UserProfile
 
 class Recipe(models.Model):
     title = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='recipes') #, blank=True, null=True , default='images/empty-plate.jpg'
+    image = models.ImageField(upload_to='recipes') #, blank=True, null=True ,'
     description = models.TextField()
     method = models.TextField()
     ingredients = models.CharField(max_length=250)

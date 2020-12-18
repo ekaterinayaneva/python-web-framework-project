@@ -9,13 +9,21 @@
         </div>
 
 
+        <div class="d-inline p-3 w-50" style="font-family: 'JetBrains Mono', cursive; color: #fff">
+            <div class="text-center" style="margin: 50px">
+                <h5>{{ recipe.description }}</h5>
+            </div>
+        </div>
+
+
         <div class="text-center" style="padding: 20px">
             <img src="{{ recipe.image.url }}" alt="image of {{ recipe.name }}">
 
-            <div class="text-center inline-deletelink w-auto" style="font-family: Algerian,serif; color: #fff">
-                <h6><u>Created by:</u> {{ recipe.user.user.username }}</h6>
-                <h6><u>Saved:</u> {{ recipe.saverecipe_set.count }}</h6>
+            <div class="text-center inline-deletelink w-auto" style="font-family: 'Bernard MT Condensed', cursive; color: #fff">
+                <h6>Created by: {{ recipe.user.user.username }}</h6>
+                <h6>Saved: {{ recipe.saverecipe_set.count }}</h6>
 
+            {% if can_save %}
                 {% if has_saved %}
                 <a href="{% url 'save recipe' recipe.id %}"><svg style="color: #fff" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-bookmark-star-fill" fill="black" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M4 0a2 2 0 0 0-2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4zm4.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"></path>
@@ -26,13 +34,8 @@
   <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"></path>
 </svg></a>
                 {% endif %}
+            {% endif %}
 
-            </div>
-        </div>
-
-        <div class="d-inline p-3 w-50" style="font-family: 'JetBrains Mono', cursive; margin-left: 50px; color: #fff">
-            <div class="text-center">
-                <h5>{{ recipe.description }}</h5>
             </div>
         </div>
 
@@ -70,7 +73,7 @@
         {% if recipe.comment_set.count > 0 %}
             {% for comment in recipe.comment_set.all %}
                 <div class="box" style="font-family: Constantia ; color: #fff; padding-top: 15px">
-                    <a style="color: #fff">{{ recipe.user.user.username }} says:</a>
+                    <a style="color: #fff">{{ comment.user.user.username }} says:</a>
                     <h5><em>{{ comment.text }}</em></h5>
                 </div>
             {% endfor %}
