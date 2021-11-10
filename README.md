@@ -1,3 +1,6 @@
+# GOOD FOOD - Festive recipes website
+
+
 **1. INTRODUCTION**
 
 This is a Django-powered Recipes site designed for the bakers and focused on being a place for them to share their recipes with each other and the world.
